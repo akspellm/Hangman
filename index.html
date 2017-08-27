@@ -11,20 +11,70 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-  </head>
+</head>
 
-  <body>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Hangman: Cat Edition</h1>
+        <p class="lead">Guess the cat breed in 10 guess or less to win!</p>
+        <hr class="my-4">
+        <p>press any letter key to get started</p>
+    </div>
+</div>
 
-    <h5>Wins: <span id="won-games"></span></h5>
+<div class="container" id="main"> 
 
-    <h3>Current Word: <br><span id="word-blanks"> </span></h3>
+        <div class="row">
+            <div class="col-md-4 photo-box">
+                <img class="img-fluid" id="cat-photo">
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-header">
+                            Wins:
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text"><span id="won-games"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-header">
+                            Current Word:
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-text"><span id="word-blanks"></span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-header">
+                            Guesses Left:
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-text"><span id="guess-counter"></span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-header">
+                            Letters Guessed:
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-text"><span id="guessed-letters"></span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h3>Guess Counter: <br><span id="guess-counter"> </span></h3>
+  </div>
 
-    
-    <h3>Guessed Letters: <br><span id="guessed-letters"> </span></h3>
-
-    <img id="cat-photo">
 
 
     <script src="assets/javascript/game.js"></script>

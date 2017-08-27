@@ -1,8 +1,53 @@
+body {
+	background: url('../images/cosmic-cats.jpg') no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.jumbotron {
+	background-color: rgba(0,0,0,1);
+	height: 280px;
+	color: white;
+
+
+
+}
+
+#main {
+	background-color: rgba(0,0,0,0.7);
+	border-radius: 2%;
+}
+
+
+
+
+
+/*#main {
+	
+	background-width: 100%;
+	background-attachment: fixed;
+	display:flex;
+	flex-flow: column;
+	height: 100%;
+}
+*/
+
+
 #word-blanks {
 	letter-spacing: 1ex;
 }
 
-#cat-photo {
-	height: 200px;
-	width: 200px;
+.card {
+	margin: 3%;
+	padding: 3%;
+	width: 80%;
+	text-align: center;
 }
+
+#cat-photo {
+	width: 80%;
+	padding-top: 15%;
+}
+
+
+

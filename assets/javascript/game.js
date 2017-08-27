@@ -2,6 +2,7 @@ var wordBlanks = document.getElementById("word-blanks");
 var guessCounter = document.getElementById("guess-counter");
 var guessedLetters = document.getElementById("guessed-letters")
 var wonGames = document.getElementById("won-games");
+var catPhoto = document.getElementById("cat-photo");
 
 var gamesWon = 0;
 var chosenWord = "";
@@ -10,21 +11,41 @@ var guessesLeft = 10;
 guessCounter.textContent = guessesLeft;
 wonGames.textContent = gamesWon;
 
+  var cats = {
+    "abyssinian" : "assets/images/abyssinian.jpg",
+    "bengal" : "assets/images/bengal.jpg",
+    "birman" : "assets/images/birman.jpg",
+    "burmese" : "assets/images/burmese.jpg",
+    "manx" : "assets/images/manx.jpg",
+    "ocicat" : "assets/images/ocicat.jpg",
+    "persian" : "assets/images/persian.jpg",
+    "ragdoll" : "assets/images/ragdoll.jpg",
+    "siamese" : "assets/images/siamese.jpg",
+    "siberian" : "assets/images/siberian.jpg",
+    "sphynx" : "assets/images/sphynx.jpg",
+    "tonkinese" : "assets/images/tonkinese.jpg",
+  }
 
 
 // CHOOSE WORD
 
 var pickWord = function() {
 
-    var wordChoices = ["British Shorthair"]
+    var wordChoices = Object.keys(cats);
+    console.log(wordChoices);
 
+    // var cats = ["assets/images/BritishShorthair.jpg"];
+    // console.log(cats);
+    // catPhoto.src = cats[0];
     // var wordChoices = ["Brittish Shorthair", "Siamese", "Persian", "Ragdoll", "Maine Coon", "Bengal", "Sphynx", "Abyssinian", "Russian Blue", "American Bobtail"];
 
     var randomWord = function() {
-        return wordChoices[Math.round(Math.random()) * (wordChoices.length - 1)];
+        randomIndex= Math.round(Math.random() * (wordChoices.length-1));
+        return wordChoices[randomIndex];
     }
 
     chosenWord = randomWord();
+    catPhoto.src = cats[chosenWord];
 
     // SET UP WORD HOLDER
 
@@ -59,7 +80,7 @@ pickWord();
 // GAME
 
 document.onkeyup = function(event) {
-    var letter = event.key;
+    var letter = event.key.toLowerCase();
 
 
     function correctGuess(n, c, string) {
@@ -104,6 +125,7 @@ document.onkeyup = function(event) {
     wordBlanks.textContent = wordHolder;
     guessedLetters.textContent = lettersGuessed;
     guessCounter.textContent = guessesLeft;
+    wonGames.textContent = gamesWon;
 }
 
 }
