@@ -1,37 +1,62 @@
 var wordBlanks = document.getElementById("word-blanks");
 var guessCounter = document.getElementById("guess-counter");
 var guessedLetters = document.getElementById("guessed-letters")
+var wonGames = document.getElementById("won-games");
+
+var gamesWon = 0;
+var chosenWord = "";
+var lettersGuessed = [];
+var guessesLeft = 10;
+guessCounter.textContent = guessesLeft;
+wonGames.textContent = gamesWon;
+
 
 
 // CHOOSE WORD
-var chosenWord = ""
-var wordChoices = ["cat", "dog"];
 
-var randomWord = function() {
-    return wordChoices[Math.round(Math.random()) * (wordChoices.length - 1)];
-}
+var pickWord = function() {
 
-chosenWord = randomWord();
+    var wordChoices = ["British Shorthair"]
 
+    // var wordChoices = ["Brittish Shorthair", "Siamese", "Persian", "Ragdoll", "Maine Coon", "Bengal", "Sphynx", "Abyssinian", "Russian Blue", "American Bobtail"];
 
-// SET UP WORD HOLDER
+    var randomWord = function() {
+        return wordChoices[Math.round(Math.random()) * (wordChoices.length - 1)];
+    }
 
-wordHolder = "";
+    chosenWord = randomWord();
 
+    // SET UP WORD HOLDER
 
-for (i = 0; i < chosenWord.length; i++) {
-    wordHolder += "_";
+    var wordHash = function(word) {
+        wordHolder = "";
+        for (i = 0; i < word.length; i++) {
+            wordHolder += "_";
+        };
+    }
+
+    wordHash(chosenWord);
+
+    wordBlanks.textContent = wordHolder;
 };
 
-wordBlanks.textContent = wordHolder;
+// RESET GAME
+
+var reset = function () {
+  chosenWord = "";
+  lettersGuessed = [];
+  guessesLeft = 10;
+  wordBlanks.textContent = wordHolder;
+  guessedLetters.textContent = lettersGuessed;
+  guessCounter.textContent = guessesLeft;
+  pickWord();
+};
 
 
+pickWord();
 
-// GUESS FUNCTION
 
-var lettersGuessed = [];
-
-var guessesMade = 0;
+// GAME
 
 document.onkeyup = function(event) {
     var letter = event.key;
@@ -41,18 +66,44 @@ document.onkeyup = function(event) {
         return (string.substr(0, n) + c + string.substr(n + 1))
     }
 
+    // not in guessed array
+
+    if (lettersGuessed.includes(letter) == false) {
+
+      // replace letter
+
     if (chosenWord.includes(letter)) {
         for (i = 0; i < chosenWord.length; i++) {
             if (chosenWord[i] == letter) {
                 wordHolder = correctGuess(i, letter, wordHolder);
             }
         }
+
+        // wrong guess
+
     } else {
-        guessesMade++;
+        guessesLeft--;
         lettersGuessed.push(letter);
+    }
+
+      // game over
+
+    if (guessesLeft < 1){
+      reset();
+      alert("Game Over");
+    }
+
+    // game won
+
+    if (wordHolder == chosenWord){
+      alert("You win!!")
+      gamesWon++;
+      reset();
     }
 
     wordBlanks.textContent = wordHolder;
     guessedLetters.textContent = lettersGuessed;
-    guessCounter.textContent = guessesMade;
+    guessCounter.textContent = guessesLeft;
+}
+
 }
