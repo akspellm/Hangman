@@ -1,3 +1,5 @@
+// VARIABLES
+
 var wordBlanks = document.getElementById("word-blanks");
 var guessCounter = document.getElementById("guess-counter");
 var guessedLetters = document.getElementById("guessed-letters")
@@ -26,18 +28,14 @@ wonGames.textContent = gamesWon;
     "tonkinese" : "assets/images/tonkinese.jpg",
   }
 
+  var meow = new Audio('assets/meow.wav');
+
 
 // CHOOSE WORD
 
 var pickWord = function() {
 
     var wordChoices = Object.keys(cats);
-    console.log(wordChoices);
-
-    // var cats = ["assets/images/BritishShorthair.jpg"];
-    // console.log(cats);
-    // catPhoto.src = cats[0];
-    // var wordChoices = ["Brittish Shorthair", "Siamese", "Persian", "Ragdoll", "Maine Coon", "Bengal", "Sphynx", "Abyssinian", "Russian Blue", "American Bobtail"];
 
     var randomWord = function() {
         randomIndex= Math.round(Math.random() * (wordChoices.length-1));
@@ -56,7 +54,11 @@ var pickWord = function() {
         };
     }
 
+    // HASH CHOSEN WORD
+
     wordHash(chosenWord);
+
+    // DISPLAY WORD HASH
 
     wordBlanks.textContent = wordHolder;
 };
@@ -117,6 +119,7 @@ document.onkeyup = function(event) {
     // game won
 
     if (wordHolder == chosenWord){
+      meow.play();
       alert("You win!!")
       gamesWon++;
       reset();

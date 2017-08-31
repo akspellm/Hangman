@@ -1,37 +1,21 @@
 body {
-	background: url('../images/cosmic-cats.jpg') no-repeat;
-	background-size: cover;
+	background: url('../images/cosmic-cats.jpg') repeat;
+	background-size: fill;
 	background-attachment: fixed;
+	font-family: 'Permanent Marker', cursive;
 }
 
 .jumbotron {
 	background-color: rgba(0,0,0,1);
 	height: 280px;
 	color: white;
-
-
-
+	text-align: center;
 }
 
 #main {
 	background-color: rgba(0,0,0,0.7);
 	border-radius: 2%;
 }
-
-
-
-
-
-/*#main {
-	
-	background-width: 100%;
-	background-attachment: fixed;
-	display:flex;
-	flex-flow: column;
-	height: 100%;
-}
-*/
-
 
 #word-blanks {
 	letter-spacing: 1ex;
