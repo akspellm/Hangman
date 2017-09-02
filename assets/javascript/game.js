@@ -1,10 +1,37 @@
+$("#got-it").click(function() {
+  $("#instructions").toggle();
+});
+
+$("#hint").click(function() {
+  $("#hint-photo").toggle();
+});
+
+$("#hint-ok").click(function() {
+  $("#hint-photo").toggle();
+});
+
+$("#accept").click(function() {
+  $("#message-box").toggle();
+});
+
+var eatMouse = function() {
+    $("#animate-mouse").fadeToggle()
+    catSound.src = "assets/bite.wav"
+    setTimeout(function() {
+        $('#animate-mouse').toggle();
+        catSound.play();
+        $("#animate-cat").animate({ width: "+=10px" })
+    }, 1000);
+}
+
+
 // VARIABLES
 
 var wordBlanks = document.getElementById("word-blanks");
 var guessCounter = document.getElementById("guess-counter");
 var guessedLetters = document.getElementById("guessed-letters")
 var wonGames = document.getElementById("won-games");
-// var catPhoto = document.getElementById("cat-photo");
+var catPhoto = document.getElementById("cat-photo");
 
 var gamesWon = 0;
 var chosenWord = "";
@@ -43,7 +70,8 @@ var pickWord = function() {
     }
 
     chosenWord = randomWord();
-    // catPhoto.src = cats[chosenWord];
+    console.log(chosenWord);
+    catPhoto.src = cats[chosenWord];
 
     // SET UP WORD HOLDER
 
@@ -91,7 +119,7 @@ $(document).ready(function(){
 
     // not in guessed array
 
-    if (lettersGuessed.includes(letter) == false) {
+    if (lettersGuessed.includes(letter) === false) {
 
       // replace letter
 
@@ -99,34 +127,16 @@ $(document).ready(function(){
         for (i = 0; i < chosenWord.length; i++) {
             if (chosenWord[i] == letter) {
                 wordHolder = correctGuess(i, letter, wordHolder);
+                eatMouse();
             }
         }
-      // game won
+        
 
-    if (wordHolder == chosenWord) {
-        catSound.src = "assets/purr.wav"
-        catSound.play();
-        alert("You win!!")
-        gamesWon++;
-        reset();
-    } else {
-        $("#animate-mouse").fadeToggle()
-        catSound.src = "assets/bite.wav"
-        // setTimeout(alert("4 seconds"),4000);
-        setTimeout(function() {
-            $('#animate-mouse').toggle();
-            catSound.play();
-            $("#animate-cat").animate({ width: "+=10px" })
-    }, 1000);
-    }
-
-        // wrong guess
-
-    } else {
+      } else {
         guessesLeft--;
         lettersGuessed.push(letter);
         $("#animate-cat").effect("bounce", "slow");
-    }
+    };
 
       // game over
 
@@ -134,8 +144,24 @@ $(document).ready(function(){
       catSound.src = "assets/meow.wav"
       catSound.play();
       reset();
-      alert("Game Over");
+      $("#message-box").toggle();
+      $("#message").html("You lose \n Better luck next time!");
     }
+
+
+      // game won
+
+    if (wordHolder == chosenWord) {
+        catSound.src = "assets/purr.wav"
+        catSound.play();
+        $("#message-box").toggle();
+        $("#message").html("You win! Let's play again!");
+        gamesWon++;
+        reset();
+    }
+
+        // wrong guess
+
 
     wordBlanks.textContent = wordHolder;
     guessedLetters.textContent = lettersGuessed;

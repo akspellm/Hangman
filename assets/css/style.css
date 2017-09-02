@@ -13,9 +13,44 @@ body {
 	color: white;
 }
 
-#main {
-	background-color: rgba(0,0,0,0);
-	border-radius: 2%;
+#smaller-text {
+	margin-top: 2%;
+}
+
+#instructions {
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	margin: 0 auto;
+}
+
+#instructions .card-text {
+	width:50%;
+	margin: 0px auto;
+}
+
+#hint {
+	display: inline;
+}
+
+#hint-photo {
+	position: absolute;
+	width: 40%;
+	z-index: 15;
+	display: none;
+}
+
+#cat-photo {
+	width: 60%;
+}
+
+#message-box {
+	display: none;
+	position: absolute;
+	z-index: 20;
+	background-color: black;
+	width: 40%;
+	margin-left: 25%;
 }
 
 #word-blanks {
@@ -29,11 +64,6 @@ body {
 	text-align: center;
 	background-color: rgba(0,0,0,0.8);
 	color: white;
-}
-
-#cat-photo {
-	width: 80%;
-	padding-top: 15%;
 }
 
 #animate-cat {
@@ -50,5 +80,7 @@ body {
 	margin-top: 23%;
 	width: 15%;
 }
+
+
 
 
