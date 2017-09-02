@@ -28,7 +28,7 @@ wonGames.textContent = gamesWon;
     "tonkinese" : "assets/images/tonkinese.jpg",
   }
 
-  var meow = new Audio('assets/meow.wav');
+  var catSound = new Audio();
 
 
 // CHOOSE WORD
@@ -112,6 +112,8 @@ document.onkeyup = function(event) {
       // game over
 
     if (guessesLeft < 1){
+      catSound.src = "assets/meow.wav"
+      catSound.play();
       reset();
       alert("Game Over");
     }
@@ -119,7 +121,8 @@ document.onkeyup = function(event) {
     // game won
 
     if (wordHolder == chosenWord){
-      meow.play();
+      catSound.src = "assets/purr.wav"
+      catSound.play();
       alert("You win!!")
       gamesWon++;
       reset();
