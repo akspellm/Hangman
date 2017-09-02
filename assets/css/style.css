@@ -1,19 +1,20 @@
 body {
-	background: url('../images/cosmic-cats.jpg') repeat;
+	background: url('../images/space.jpg') repeat;
 	background-size: fill;
 	background-attachment: fixed;
 	font-family: 'Permanent Marker', cursive;
+	letter-spacing: 0.2em;
 }
 
 .jumbotron {
-	background-color: rgba(0,0,0,1);
 	height: 280px;
-	color: white;
 	text-align: center;
+	background-color: rgba(0,0,0,0.8);
+	color: white;
 }
 
 #main {
-	background-color: rgba(0,0,0,0.7);
+	background-color: rgba(0,0,0,0);
 	border-radius: 2%;
 }
 
@@ -26,6 +27,8 @@ body {
 	padding: 3%;
 	width: 80%;
 	text-align: center;
+	background-color: rgba(0,0,0,0.8);
+	color: white;
 }
 
 #cat-photo {
@@ -33,5 +36,19 @@ body {
 	padding-top: 15%;
 }
 
+#animate-cat {
+	position: absolute; 
+	width: 80%;
+	z-index: -1;
+}
+
+#animate-mouse {
+	display: none; 
+	position: absolute; 
+	z-index: 5;
+	margin-left: 44%;
+	margin-top: 23%;
+	width: 15%;
+}
 
 

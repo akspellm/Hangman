@@ -4,7 +4,7 @@ var wordBlanks = document.getElementById("word-blanks");
 var guessCounter = document.getElementById("guess-counter");
 var guessedLetters = document.getElementById("guessed-letters")
 var wonGames = document.getElementById("won-games");
-var catPhoto = document.getElementById("cat-photo");
+// var catPhoto = document.getElementById("cat-photo");
 
 var gamesWon = 0;
 var chosenWord = "";
@@ -43,7 +43,7 @@ var pickWord = function() {
     }
 
     chosenWord = randomWord();
-    catPhoto.src = cats[chosenWord];
+    // catPhoto.src = cats[chosenWord];
 
     // SET UP WORD HOLDER
 
@@ -80,8 +80,8 @@ pickWord();
 
 
 // GAME
-
-document.onkeyup = function(event) {
+$(document).ready(function(){
+    $(document).keyup(function (){
     var letter = event.key.toLowerCase();
 
 
@@ -101,12 +101,31 @@ document.onkeyup = function(event) {
                 wordHolder = correctGuess(i, letter, wordHolder);
             }
         }
+      // game won
+
+    if (wordHolder == chosenWord) {
+        catSound.src = "assets/purr.wav"
+        catSound.play();
+        alert("You win!!")
+        gamesWon++;
+        reset();
+    } else {
+        $("#animate-mouse").fadeToggle()
+        catSound.src = "assets/bite.wav"
+        // setTimeout(alert("4 seconds"),4000);
+        setTimeout(function() {
+            $('#animate-mouse').toggle();
+            catSound.play();
+            $("#animate-cat").animate({ width: "+=10px" })
+    }, 1000);
+    }
 
         // wrong guess
 
     } else {
         guessesLeft--;
         lettersGuessed.push(letter);
+        $("#animate-cat").effect("bounce", "slow");
     }
 
       // game over
@@ -118,20 +137,12 @@ document.onkeyup = function(event) {
       alert("Game Over");
     }
 
-    // game won
-
-    if (wordHolder == chosenWord){
-      catSound.src = "assets/purr.wav"
-      catSound.play();
-      alert("You win!!")
-      gamesWon++;
-      reset();
-    }
-
     wordBlanks.textContent = wordHolder;
     guessedLetters.textContent = lettersGuessed;
     guessCounter.textContent = guessesLeft;
     wonGames.textContent = gamesWon;
 }
 
-}
+})
+
+})
